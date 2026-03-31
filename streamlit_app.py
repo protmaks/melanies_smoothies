@@ -16,7 +16,11 @@ session = cnx.session()
 my_dataframe = session.sql("SELECT FRUIT_NAME FROM smoothies.public.fruit_options").to_pandas()
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
-ingredients_list = st.multiselect('Choose up to 5 ingredients:', my_dataframe['FRUIT_NAME'].tolist())
+ingredients_list = st.multiselect(
+    'Choose up to 5 ingredients:', 
+    my_dataframe['FRUIT_NAME'].tolist(),
+    key='smoothie_ingredients' # This makes the ID unique
+)
 
 if ingredients_list:
     ingredients_string = ''
